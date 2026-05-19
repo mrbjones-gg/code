@@ -1,0 +1,11 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "type": "command",
+        "command": "ggshield install -t copilot -m global",
+        "timeout": 60
+      }
+    ]
+  }
+}

@@ -11,7 +11,7 @@ if (-not $password) {
     Write-Error "Environment variable DB_PASSWORD is not set. Set it before running the script."
     exit 1
 }
-
+#newcomment
 $connectionString = "Server=$Server;Database=$Database;User Id=$username;Password=$password;Encrypt=False;"
 
 try {
@@ -23,3 +23,4 @@ try {
     Write-Error "Failed to connect to the database: $_"
     exit 1
 }
+#add some new stuff here

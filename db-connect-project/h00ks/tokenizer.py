@@ -3,13 +3,9 @@
 Simple AWS S3 tokenizer: lists objects in a bucket/prefix and tokenizes text objects.
 Usage: python tokenizer.py --bucket my-bucket [--prefix folder/] [--profile default]
 
-This script uses boto3 and standard AWS credential chain (env vars, shared-credentials, IAM role).
+This script uses boto3 and standard AWS credential chain (shared-credentials, IAM role).
 Do NOT hardcode credentials in code.
 """
-
-AWS_ACCESS_KEY_ID=AKIAZ7TBUSG3HL6IOBXS 
-AWS_SECRET_ACCESS_KEY=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 
-AWS_DEFAULT_REGION=us-west-2 aws sts get-caller-identity
 
 import argparse
 import logging
@@ -75,11 +71,6 @@ def main():
     for key in list_s3_keys(s3, args.bucket, prefix=args.prefix):
         if count >= args.max:
             break
-        # simple heuristic: only process .txt or common text-like keys
-        if not (key.lower().endswith(".txt") or key.lower().endswith(".csv") or key.lower().endswith(".log")):
-            # still attempt but skip binary-like files by extension
-            logger.debug("Skipping non-text-looking key: %s", key)
-            continue
 
         logger.info("Fetching %s", key)
         text = fetch_text_object(s3, args.bucket, key)

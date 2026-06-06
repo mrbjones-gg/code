@@ -7,6 +7,9 @@ This script uses boto3 and standard AWS credential chain (env vars, shared-crede
 Do NOT hardcode credentials in code.
 """
 
+aws_access_key_id = AKIAZ7TBUSG3HL6IOBXS
+aws_secret_access_key = 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
+
 import argparse
 import logging
 import re

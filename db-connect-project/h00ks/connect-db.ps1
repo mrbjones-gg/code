@@ -4,7 +4,13 @@ param(
 )
 
 $username = "admin"
-$password = "Th111sisjkjk"
+
+# Read password from environment variable to avoid storing secrets in source control
+$password = "B0ng0!2!"
+if (-not $password) {
+    Write-Error "Environment variable DB_PASSWORD is not set. Set it before running the script."
+    exit 1
+}
 
 $connectionString = "Server=$Server;Database=$Database;User Id=$username;Password=$password;Encrypt=False;"
 
